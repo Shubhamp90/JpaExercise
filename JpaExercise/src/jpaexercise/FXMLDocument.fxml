@@ -11,9 +11,10 @@
         <Button fx:id="button" layoutX="14.0" layoutY="14.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <ListView fx:id="lvPeople" layoutX="95.0" layoutY="37.0" prefHeight="179.0" prefWidth="200.0" />
-      <TextField fx:id="tfLastName" layoutX="103.0" layoutY="252.0" />
+      <TextField fx:id="tfFirstName" layoutX="103.0" layoutY="252.0" />
       <TextField fx:id="tfLastName" layoutX="276.0" layoutY="252.0" />
       <Label layoutX="103.0" layoutY="232.0" text="First Name" />
       <Label layoutX="281.0" layoutY="232.0" text="Last Name" />
+      <Button fx:id="btnAddPerson" layoutX="106.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#handleButtonAddPersonClicked" text="Add" />
     </children>
 </AnchorPane>
