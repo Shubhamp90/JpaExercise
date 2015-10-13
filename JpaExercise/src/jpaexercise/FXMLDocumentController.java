@@ -9,6 +9,8 @@ import jars.PersonJpaController;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,15 +64,28 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAddPersonClicked(MouseEvent event) {
-        // Build up full name
-        String fullName = tfFirstName.getText() + " " +
-        tfLastName.getText();
-        // Debugging to be removed later
-        System.out.println(fullName);
-        // Debugging to be removed later
-        lvPeople.getItems().add(fullName);
+       
+        Person newPerson = new Person();
+        newPerson.setFirstName(tfFirstName.getText());
+        newPerson.setLastName(tfLastName.getText());
+        EntityManagerFactory emf =
+        Persistence.createEntityManagerFactory("PopulateListPU");
+
+        PersonJpaController jpaPerson =
+            new PersonJpaController(emf);
+
+        try {
+            jpaPerson.create(newPerson);
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(
+                Level.SEVERE, null, ex
+);
+
+
 
     }
+    }
+
     public void SyncPeopleListView() {
 
         // Items inside the list
