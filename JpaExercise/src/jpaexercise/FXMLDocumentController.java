@@ -7,7 +7,9 @@ package jpaexercise;
 
 import jars.PersonJpaController;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,5 +70,26 @@ public class FXMLDocumentController implements Initializable {
         lvPeople.getItems().add(fullName);
 
     }
+    public void SyncPeopleListView() {
+
+        // Items inside the list
+        ObservableList<String> items = lvPeople.getItems();
+
+        // Clear out the list
+        items.clear();// Get list of all people in the database
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PopulateListPU");
+        PersonJpaController jpaPerson;
+        jpaPerson = new PersonJpaController(emf);
+        List<Person> people = jpaPerson.findPersonEntities();
+       
+        // Add each person to the list
+        for (Person p : people) {
+        String fullName = p.getFirstName() + " " + p.getLastName();
+        lvPeople.getItems().add(fullName);
+        }
+   
+    }
+
+    
     
 }
