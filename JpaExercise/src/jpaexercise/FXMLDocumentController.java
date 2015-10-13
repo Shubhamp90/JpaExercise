@@ -11,8 +11,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -23,6 +28,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label label;
     private Object persistence;
+    @FXML
+    private Button button;
+    @FXML
+    private ListView<?> lvPeople;
+    @FXML
+    private TextField tfFirstName;
+    @FXML
+    private TextField tfLastName;
+    @FXML
+    private Button btnAddPerson;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -33,7 +48,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         EntityManagerFactory emf;
-        emf = persistence.createEntityManagerFactory("JpaExercisePU");
+        emf = Persistence.createEntityManagerFactory("JpaExercisePU");
         Person dude = new Person();
         dude.setFirstName("phill");
         
@@ -41,5 +56,9 @@ public class FXMLDocumentController implements Initializable {
         jpaPerson.create(dude);
         
     }    
+
+    @FXML
+    private void handleButtonAddPersonClicked(MouseEvent event) {
+    }
     
 }
